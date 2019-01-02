@@ -158,6 +158,7 @@ int atomic_shmem_demo()
 	metal_io_write32(ipi_io, IPI_ISR_OFFSET, IPI_MASK);
 	/* Register IPI irq handler */
 	metal_irq_register(ipi_irq, ipi_irq_handler, ipi_dev, ipi_io);
+	metal_irq_enable(ipi_irq);
 	/* initialize remote_nkicked */
 	atomic_init(&remote_nkicked, 1);
 	/* Enable IPI interrupt */
@@ -169,6 +170,7 @@ int atomic_shmem_demo()
 	/* disable IPI interrupt */
 	metal_io_write32(ipi_io, IPI_IDR_OFFSET, IPI_MASK);
 	/* unregister IPI irq handler by setting the handler to 0 */
+	metal_irq_disable(ipi_irq);
 	metal_irq_unregister(ipi_irq);
 
 out:

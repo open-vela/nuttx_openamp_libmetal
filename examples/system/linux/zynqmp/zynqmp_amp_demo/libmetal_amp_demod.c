@@ -344,6 +344,7 @@ int main(void)
 	LPRINTF("registered IPI interrupt.\n");
 	if (ret)
 		goto out;
+	metal_irq_enable(irq);
 
 	/* Enable interrupt */
 	metal_io_write32(ch0.ipi_io, IPI_IER_OFFSET, ch0.ipi_mask);
