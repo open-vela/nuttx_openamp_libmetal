@@ -340,7 +340,7 @@ int main(void)
 	ch0.ipi_mask = IPI_MASK;
 
 	LPRINTF("Try to register IPI interrupt.\n");
-	ret =  metal_irq_register(irq, ipi_irq_isr, ch0.ipi_dev, &ch0);
+	ret =  metal_irq_register(irq, ipi_irq_isr, &ch0);
 	LPRINTF("registered IPI interrupt.\n");
 	if (ret)
 		goto out;

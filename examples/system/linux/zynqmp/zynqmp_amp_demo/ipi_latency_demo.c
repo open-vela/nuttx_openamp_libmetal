@@ -270,7 +270,7 @@ int ipi_latency_demo()
 	atomic_init(&ch.remote_nkicked, 1);
 	ch.ipi_mask = IPI_MASK;
 	/* Register IPI irq handler */
-	metal_irq_register(ipi_irq, ipi_irq_handler, ch.ipi_dev, &ch);
+	metal_irq_register(ipi_irq, ipi_irq_handler, &ch);
 	metal_irq_enable(ipi_irq);
 	/* Enable IPI interrupt */
 	metal_io_write32(ch.ipi_io, IPI_IER_OFFSET, IPI_MASK);
