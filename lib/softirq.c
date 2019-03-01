@@ -19,8 +19,8 @@
 #define METAL_SOFTIRQ_ARRAY_DECLARE(num) \
 	static const int metal_softirq_num = num; \
 	static struct metal_irq metal_softirqs[num]; \
-	static char metal_softirq_pending[num]; \
-	static char metal_softirq_enabled[num]; \
+	static atomic_char metal_softirq_pending[num]; \
+	static atomic_char metal_softirq_enabled[num]; \
 
 static int metal_softirq_avail = 0;
 METAL_SOFTIRQ_ARRAY_DECLARE(METAL_SOFTIRQ_NUM)
