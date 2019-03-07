@@ -90,7 +90,7 @@ void metal_softirq_dispatch()
 		struct metal_irq *irq;
 		char is_pending = 1;
 
-		if (metal_softirq_enabled[i] != 0 &&
+		if (atomic_load(&metal_softirq_enabled[i]) != 0 &&
 		    atomic_compare_exchange_strong(&metal_softirq_pending[i],
 						   &is_pending, 0)) {
 			irq = &metal_softirqs[i];
