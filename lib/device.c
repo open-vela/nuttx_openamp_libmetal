@@ -43,11 +43,10 @@ int metal_bus_find(const char *name, struct metal_bus **result)
 
 	metal_list_for_each(&_metal.common.bus_list, node) {
 		bus = metal_container_of(node, struct metal_bus, node);
-		if (strcmp(bus->name, name) != 0)
-			continue;
-		if (result)
+		if (strcmp(bus->name, name) == 0 && result) {
 			*result = bus;
-		return 0;
+                	return 0;
+                }
 	}
 	return -ENOENT;
 }
@@ -106,10 +105,10 @@ int metal_generic_dev_open(struct metal_bus *bus, const char *dev_name,
 
 	metal_list_for_each(&_metal.common.generic_device_list, node) {
 		dev = metal_container_of(node, struct metal_device, node);
-		if (strcmp(dev->name, dev_name) != 0)
-			continue;
-		*device = dev;
-		return metal_generic_dev_sys_open(dev);
+		if (strcmp(dev->name, dev_name) == 0) {
+                	*device = dev;
+			return metal_generic_dev_sys_open(dev);
+        	}
 	}
 
 	return -ENODEV;
