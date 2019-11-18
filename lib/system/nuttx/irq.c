@@ -28,14 +28,12 @@ void metal_irq_restore_enable(unsigned int flags)
 static void metal_cntr_irq_set_enable(struct metal_irq_controller *cntr,
 				      int irq, unsigned int enable)
 {
-#ifndef CONFIG_ARCH_NOINTC
 	if (irq >= 0 && irq < cntr->irq_num) {
 		if (enable == METAL_IRQ_ENABLE)
 			up_enable_irq(irq);
 		else
 			up_disable_irq(irq);
 	}
-#endif
 }
 
 static int metal_cntr_irq_handler(int irq, void *context, void *data)
@@ -80,8 +78,7 @@ static int metal_cntr_irq_attach(struct metal_irq_controller *cntr,
 int metal_cntr_irq_init(void)
 {
 	static METAL_IRQ_CONTROLLER_DECLARE(metal_cntr_irq,
-					    0,
-					    NR_IRQS ? NR_IRQS : 1,
+					    0, NR_IRQS,
 					    NULL,
 					    metal_cntr_irq_set_enable,
 					    metal_cntr_irq_attach,
