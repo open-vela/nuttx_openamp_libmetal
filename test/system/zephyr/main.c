@@ -7,7 +7,7 @@
 #include "metal-test-internal.h"
 #include <kernel.h>
 #include <metal/log.h>
-#include <misc/printk.h>
+#include <sys/printk.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
