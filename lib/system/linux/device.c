@@ -238,7 +238,7 @@ static int metal_uio_dev_open(struct linux_bus *lbus, struct linux_device *ldev)
 		result = (result ? result :
 			 metal_uio_read_map_attr(ldev, i, "size", &size));
 		result = (result ? result :
-			 metal_map(ldev->fd, offset, size, 0, 0, &virt));
+			 metal_map(ldev->fd, i * getpagesize(), size, 0, 0, &virt));
 		if (!result) {
 			io = &ldev->device.regions[ldev->device.num_regions];
 			metal_io_init(io, virt, phys, size, -1, 0, NULL);
