@@ -154,6 +154,11 @@ implementation for metal_sys_init and metal_sys_finish.
 For Linux userspace, metal_sys_init sets up a table for available shared pages,
 checks whether UIO/VFIO drivers are avail, and starts interrupt handling
 thread.
+Please note that on Linux, to access device's memory that is not page
+aligned, an offset has to be added to the pointer returned by
+mmap(). This `offset`, although it can be read from the device tree
+property exposed by the uio driver, is not handled yet by the
+library.
 
 For bare-metal, metal_sys_init and metal_sys_finish just returns.
 
