@@ -16,7 +16,8 @@ pre_build(){
 	echo 'Etc/UTC' > /etc/timezone &&
 	ln -s /usr/share/zoneinfo/Etc/UTC /etc/localtime &&
 	apt update &&
-   	apt-get install -y cmake make
+   	apt-get install -y make || exit 1
+   	sudo pip3 install cmake || exit 1
 }
 
 build_linux(){
