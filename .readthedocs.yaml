@@ -22,7 +22,8 @@ build:
       - git clone --recurse-submodules https://github.com/OpenAMP/openamp-docs.git
       # now adjust the focused submodule to the PR in progress
       - echo "URL=${READTHEDOCS_GIT_CLONE_URL} COMMIT=${READTHEDOCS_GIT_COMMIT_HASH}"
-      - (cd openamp-docs/libmetal; git remote add this_pr ${READTHEDOCS_GIT_CLONE_URL}; git fetch this_pr )
+      - (cd openamp-docs/libmetal; git remote add this_pr ../../.git )
+      - (cd openamp-docs/libmetal; git fetch this_pr $(cd ../..; git rev-parse HEAD) )
       - (cd openamp-docs/libmetal; git checkout $(cd ../..; git rev-parse HEAD) )
       - (cd openamp-docs/libmetal; git log -n 1 --oneline)
       - (cd openamp-docs; git submodule status)
