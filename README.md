@@ -9,7 +9,7 @@ and request memory across the following operating environments:
   * Bare-metal environments
 
 For more details on the framework please refer to the
-[OpenAMP wiki](https://github.com/OpenAMP/open-amp/wiki).
+[OpenAMP Docs](https://openamp.readthedocs.io/en/latest/).
 
 ## Project configuration
 
