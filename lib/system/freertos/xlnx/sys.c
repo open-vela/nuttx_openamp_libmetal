@@ -96,7 +96,7 @@ void *metal_machine_io_mem_map_versal_net(void *va, metal_phys_addr_t pa,
 
 	for (cnt = 0; cnt < MAX_POSSIBLE_MPU_REGS; cnt++) {
 
-		if (!mpu_config[cnt].flags & XMPU_VALID_REGION)
+		if (!(mpu_config[cnt].flags & XMPU_VALID_REGION))
 			continue;
 
 		base_end_addr =  mpu_config[cnt].Size + mpu_config[cnt].BaseAddress;
