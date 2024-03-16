@@ -103,7 +103,6 @@ int metal_open(const char *path, int shm);
 int metal_map(int fd, off_t offset, size_t size, int expand,
 	      int flags, void **result);
 int metal_unmap(void *mem, size_t size);
-int metal_mlock(void *mem, size_t size);
 
 /**
  * @brief	Read a device tree property of a device
