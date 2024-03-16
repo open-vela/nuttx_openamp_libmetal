@@ -105,8 +105,6 @@ int metal_map(int fd, off_t offset, size_t size, int expand,
 int metal_unmap(void *mem, size_t size);
 int metal_mlock(void *mem, size_t size);
 
-int metal_virt2phys(void *addr, unsigned long *phys);
-
 /**
  * @brief	Read a device tree property of a device
  *
