@@ -6,7 +6,7 @@ ZEPHYR_TOOLCHAIN_VARIANT=zephyr
 ZEPHYR_SDK_API_FOLDER=https://api.github.com/repos/zephyrproject-rtos/sdk-ng/releases/latest
 ZEPHYR_SDK_SETUP_TAR=zephyr-sdk-.*linux-x86_64.tar.xz
 
-FREERTOS_ZIP_URL=https://cfhcable.dl.sourceforge.net/project/freertos/FreeRTOS/V10.0.1/FreeRTOSv10.0.1.zip
+FREERTOS_ZIP_URL=https://sourceforge.net/projects/freertos/files/FreeRTOS/V10.0.1/FreeRTOSv10.0.1.zip
 
 pre_build(){
 	# fix issue related to tzdata install, not needed for 24.04 but kept for 22.04 and earlier
