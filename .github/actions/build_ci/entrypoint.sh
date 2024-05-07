@@ -40,8 +40,8 @@ build_generic(){
 	apt-get install -y gcc-arm-none-eabi &&
 	mkdir -p build-generic &&
 	cd build-generic &&
-	cmake .. -DCMAKE_TOOLCHAIN_FILE=template-generic &&
-	make VERBOSE=1 &&
+	cmake .. -DCMAKE_TOOLCHAIN_FILE=template-generic || exit 1
+	make VERBOSE=1 || exit 1
 	exit 0
 }
 
@@ -55,8 +55,8 @@ build_freertos(){
 	cmake .. -DCMAKE_TOOLCHAIN_FILE=template-freertos \
 		-DCMAKE_C_FLAGS="-I$PWD/../FreeRTOSv10.0.1/FreeRTOS/Source/include/ \
 		-I$PWD/../FreeRTOSv10.0.1/FreeRTOS/Demo/CORTEX_STM32F107_GCC_Rowley \
-		-I$PWD/../FreeRTOSv10.0.1/FreeRTOS/Source/portable/GCC/ARM_CM3" &&
-	make VERBOSE=1 &&
+		-I$PWD/../FreeRTOSv10.0.1/FreeRTOS/Source/portable/GCC/ARM_CM3" || exit 1
+	make VERBOSE=1 || exit 1
 	exit 0
 }
 
@@ -98,28 +98,31 @@ build_zephyr(){
  	echo "PATCHLEVEL = 0" >>VERSION &&
  	echo "VERSION_TWEAK = 0" >>VERSION &&
 	echo  "###### Build for qemu_cortex_m3 ######" &&
-	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_cortex_m3 -DWITH_TESTS=on -Bbuild-zephyr-m3 &&
-	cd build-zephyr-m3 &&
-	make VERBOSE=1 &&
+	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_cortex_m3 -DWITH_TESTS=on -Bbuild-zephyr-m3 || exit 1
+	cd build-zephyr-m3  || exit 1
+	make VERBOSE=1 || exit 1
 	cd .. &&
 	echo  "###### Build for qemu_cortex_a53 ######" &&
-	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_cortex_a53 -DWITH_TESTS=on -Bbuild-zephyr-a53 &&
+	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_cortex_a53 -DWITH_TESTS=on -Bbuild-zephyr-a53 \
+		|| exit 1
 	cd build-zephyr-a53 &&
-	make VERBOSE=1 &&
+	make VERBOSE=1  || exit 1
 	cd .. &&
 	echo  "###### Build for qemu_xtensa ######" &&
 	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_xtensa -DWITH_TESTS=on -Bbuild-zephyr-xtensa &&
 	cd build-zephyr-xtensa &&
 	cd .. &&
 	echo  "###### Build for qemu_riscv64 ######" &&
-	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_riscv64 -DWITH_TESTS=on -Bbuild-zephyr-rscv64 &&
+	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_riscv64 -DWITH_TESTS=on -Bbuild-zephyr-rscv64 \
+		|| exit 1
 	cd build-zephyr-rscv64 &&
-	make VERBOSE=1 &&
+	make VERBOSE=1  || exit 1
 	cd .. &&
 	echo  "###### Build for qemu_riscv32 ######" &&
-	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_riscv32 -DWITH_TESTS=on -Bbuild-zephyr-rscv32 &&
+	cmake . -DWITH_ZEPHYR=on -DBOARD=qemu_riscv32 -DWITH_TESTS=on -Bbuild-zephyr-rscv32 \
+		|| exit 1
 	cd build-zephyr-rscv32 &&
-	make VERBOSE=1 &&
+	make VERBOSE=1  || exit 1
 	exit 0
 }
 
