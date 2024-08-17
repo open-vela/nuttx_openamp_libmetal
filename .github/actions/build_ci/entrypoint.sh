@@ -91,8 +91,11 @@ build_zephyr(){
 	cd ./zephyr &&
 	source zephyr-env.sh &&
 	cd ../.. &&
-	# The prj.conf is mandatory for cmake execution, create a void file.
-	touch prj.conf &&
+	# The prj.conf is mandatory for cmake execution, create a file.
+	# The base level of the test framework intentionally uses constructors
+	#   so we must define this config item in v3.7.0 or later
+	#   HOWEVER, this define will cause cmake to fail for v3.6 or earlier
+	echo "CONFIG_STATIC_INIT_GNU=y" >prj.conf &&
 	# Add dummy fields in the VERSION file to fix compatibility with Zephyr
 	# version.cmake file
  	echo "PATCHLEVEL = 0" >>VERSION &&
