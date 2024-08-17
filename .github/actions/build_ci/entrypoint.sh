@@ -2,8 +2,13 @@
 
 readonly TARGET="$1"
 
+# Known good version for PR testing
+ZEPHYR_SDK_VERSION=v0.16.8
+ZEPHYR_VERSION=v3.7.0
+
 ZEPHYR_TOOLCHAIN_VARIANT=zephyr
-ZEPHYR_SDK_API_FOLDER=https://api.github.com/repos/zephyrproject-rtos/sdk-ng/releases/latest
+ZEPHYR_SDK_API_FOLDER=https://api.github.com/repos/zephyrproject-rtos/sdk-ng/releases
+ZEPHYR_SDK_VER_SELECT="tags/$ZEPHYR_SDK_VERSION"
 ZEPHYR_SDK_SETUP_TAR=zephyr-sdk-.*linux-x86_64.tar.xz
 
 FREERTOS_ZIP_URL=https://sourceforge.net/projects/freertos/files/FreeRTOS/V10.0.1/FreeRTOSv10.0.1.zip
@@ -61,7 +66,7 @@ build_freertos(){
 }
 
 build_zephyr(){
-	ZEPHYR_SDK_DOWNLOAD_URL=`curl -s ${ZEPHYR_SDK_API_FOLDER} | \
+	ZEPHYR_SDK_DOWNLOAD_URL=`curl -s ${ZEPHYR_SDK_API_FOLDER}/${ZEPHYR_SDK_VER_SELECT} | \
 		grep -e "browser_download_url.*${ZEPHYR_SDK_SETUP_TAR}"| cut -d : -f 2,3 | tr -d \"`
 	ZEPHYR_SDK_TAR=`basename  $ZEPHYR_SDK_DOWNLOAD_URL`
 	ZEPHYR_SDK_SETUP_DIR=`echo $ZEPHYR_SDK_TAR | cut -d_ -f1`
@@ -82,7 +87,7 @@ build_zephyr(){
 	pv $ZEPHYR_SDK_TAR -i 3 -ptebr -f | tar xJ || exit 1
 	rm -rf $ZEPHYR_SDK_TAR || exit 1
 	yes | ./$ZEPHYR_SDK_SETUP_DIR/setup.sh || exit 1
-	west init ./zephyrproject || exit 1
+	west init --mr $ZEPHYR_VERSION ./zephyrproject || exit 1
 	cd ./zephyrproject || exit 1
 	west update --narrow || exit 1
 	west zephyr-export || exit 1
@@ -142,6 +147,11 @@ main(){
 		build_freertos
 	fi
 	if [[ "$TARGET" == "zephyr" ]]; then
+		build_zephyr
+	fi
+	if [[ "$TARGET" == "zephyr-latest" ]]; then
+		ZEPHYR_SDK_VER_SELECT=latest
+		ZEPHYR_VERSION=main
 		build_zephyr
 	fi
 }
