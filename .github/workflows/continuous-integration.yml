@@ -22,7 +22,7 @@ jobs:
     name: check builds on different platforms
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: build for Linux
       id: build_linux
       uses: ./.github/actions/build_ci
@@ -38,7 +38,16 @@ jobs:
       uses: ./.github/actions/build_ci
       with:
         target: freertos
-    - name: build for Zephyr
+
+  # Break the zephyr builds into their own job as the common runner was
+  # running out of space when runs were together
+  # Also, as the longest running jobs, this allows them to run in ||
+  zephyr_build_known_good_version:
+    name: Zephyr build with a version that is known to work
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: build for Zephyr (Known Good)
       id: build_Zephyr
       uses: ./.github/actions/build_ci
       with:
@@ -48,7 +57,7 @@ jobs:
     name: nonreg tests
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - name: configure
       run: |
         sudo apt-get update && sudo apt-get install libsysfs-dev
