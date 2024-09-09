@@ -18,6 +18,7 @@ struct metal_state _metal;
 int metal_sys_init(const struct metal_init_params *params)
 {
 	int ret = metal_cntr_irq_init();
+	metal_unused(params);
 
 	metal_unused(params);
 	if (ret >= 0)
