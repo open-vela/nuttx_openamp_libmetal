@@ -13,5 +13,6 @@
 
 int metal_generic_dev_sys_open(struct metal_device *dev)
 {
+	metal_unused(dev);
 	return 0;
 }
