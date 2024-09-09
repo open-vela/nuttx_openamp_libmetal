@@ -15,6 +15,7 @@ static uint64_t metal_io_read_(struct metal_io_region *io,
 			       int width)
 {
 	uint64_t value = 0;
+	metal_unused(order);
 
 	metal_unused(order);
 	metal_io_block_read(io, offset, &value, width);
@@ -28,6 +29,7 @@ static void metal_io_write_(struct metal_io_region *io,
 			    int width)
 {
 	metal_unused(order);
+
 	metal_io_block_write(io, offset, &value, width);
 }
 
@@ -38,6 +40,7 @@ static int metal_io_block_read_(struct metal_io_region *io,
 				int len)
 {
 	void *va = metal_io_virt(io, offset);
+	metal_unused(order);
 
 	metal_unused(order);
 	metal_cache_invalidate(va, len);
@@ -63,6 +66,7 @@ static int metal_io_block_write_(struct metal_io_region *io,
 				 int len)
 {
 	void *va = metal_io_virt(io, offset);
+	metal_unused(order);
 
 	metal_unused(order);
 	if (len == 1)
@@ -89,6 +93,7 @@ static void metal_io_block_set_(struct metal_io_region *io,
 				int len)
 {
 	void *va = metal_io_virt(io, offset);
+	metal_unused(order);
 
 	metal_unused(order);
 	memset(va, value, len);
