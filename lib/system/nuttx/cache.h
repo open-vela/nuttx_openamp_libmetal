@@ -16,6 +16,7 @@
 #ifndef __METAL_NUTTX_CACHE__H__
 #define __METAL_NUTTX_CACHE__H__
 
+#include <metal/utilities.h>
 #include <nuttx/arch.h>
 
 #ifdef __cplusplus
@@ -24,11 +25,15 @@ extern "C" {
 
 static inline void __metal_cache_flush(void *addr, unsigned int len)
 {
+	metal_unused(addr);
+	metal_unused(len);
 	up_clean_dcache((uintptr_t)addr, (uintptr_t)addr + len);
 }
 
 static inline void __metal_cache_invalidate(void *addr, unsigned int len)
 {
+	metal_unused(addr);
+	metal_unused(len);
 	up_invalidate_dcache((uintptr_t)addr, (uintptr_t)addr + len);
 }
 
