@@ -101,7 +101,7 @@ using std::atomic_thread_fence;
 using std::atomic_signal_fence;
 
 #elif defined(HAVE_STDATOMIC_H) && !defined(__STDC_NO_ATOMICS__) && \
-      ((!defined(__CC_ARM) && !defined(__arm__)) || defined(__GNUC__))
+      !defined(__ARMCC_VERSION)
 # include <stdint.h>
 # include <stdatomic.h>
 #elif defined(__GNUC__)
