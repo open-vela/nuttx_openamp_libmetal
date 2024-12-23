@@ -17,7 +17,6 @@ static uint64_t metal_io_read_(struct metal_io_region *io,
 	uint64_t value = 0;
 	metal_unused(order);
 
-	metal_unused(order);
 	metal_io_block_read(io, offset, &value, width);
 	return value;
 }
@@ -42,7 +41,6 @@ static int metal_io_block_read_(struct metal_io_region *io,
 	void *va = metal_io_virt(io, offset);
 	metal_unused(order);
 
-	metal_unused(order);
 	metal_cache_invalidate(va, len);
 	if (len == 1)
 		*(uint8_t *)dst = *(uint8_t *)va;
@@ -68,7 +66,6 @@ static int metal_io_block_write_(struct metal_io_region *io,
 	void *va = metal_io_virt(io, offset);
 	metal_unused(order);
 
-	metal_unused(order);
 	if (len == 1)
 		*(uint8_t *)va = *(uint8_t *)src;
 	else if (len == 2)
@@ -95,7 +92,6 @@ static void metal_io_block_set_(struct metal_io_region *io,
 	void *va = metal_io_virt(io, offset);
 	metal_unused(order);
 
-	metal_unused(order);
 	memset(va, value, len);
 	metal_cache_flush(va, len);
 }
