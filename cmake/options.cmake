@@ -73,7 +73,9 @@ option (WITH_FUNC_LINE_LOG "Log with function name, line number prefix" OFF)
 
 option (WITH_DOC "Build with documentation" ON)
 
-set_property (GLOBAL PROPERTY "PROJECT_EC_FLAGS" -Wall -Werror -Wextra)
+if (NOT DEFINED WITH_NO_PROJECT_EC)
+  set_property (GLOBAL PROPERTY "PROJECT_EC_FLAGS" -Wall -Werror -Wextra)
+endif (NOT DEFINED WITH_NO_PROJECT_EC)
 
 if (NOT DEFINED PROJECT_VENDOR)
 set (PROJECT_VENDOR "none")

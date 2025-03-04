@@ -18,6 +18,8 @@
 # include <metal/compiler/iar/compiler.h>
 #elif defined(__ARMCC_VERSION)
 # error "MDK-ARM ARMCC compiler requires the GNU extensions to work correctly"
+#elif defined(__TASKING__)
+# include <metal/compiler/tasking/compiler.h>
 #else
 # error "Missing compiler support"
 #endif
