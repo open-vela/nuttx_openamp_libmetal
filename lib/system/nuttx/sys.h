@@ -26,7 +26,7 @@ extern "C" {
 
 #define METAL_INIT_DEFAULTS				\
 {							\
-	.log_handler	= (metal_log_handler)syslog,	\
+	.log_handler	= metal_nuttx_log_handler,	\
 	.log_level	= METAL_LOG_INFO,		\
 }
 
