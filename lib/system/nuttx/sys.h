@@ -24,10 +24,12 @@ extern "C" {
 
 #define metal_yield() metal_sleep_usec(1000)
 
-#define METAL_INIT_DEFAULTS				\
-{							\
-	.log_handler	= metal_nuttx_log_handler,	\
-	.log_level	= METAL_LOG_INFO,		\
+#define METAL_INIT_DEFAULTS						\
+{									\
+	.log_handler		= metal_nuttx_log_handler,		\
+	.log_level		= METAL_LOG_INFO,			\
+	.trace_handler		= metal_nuttx_trace_handler,		\
+	.trace_binary_handler	= metal_nuttx_trace_binary_handler,	\
 }
 
 /** Structure of nuttx libmetal runtime state. */
