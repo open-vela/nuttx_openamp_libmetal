@@ -6,6 +6,7 @@ collect (PROJECT_LIB_HEADERS io.h)
 collect (PROJECT_LIB_HEADERS irq.h)
 collect (PROJECT_LIB_HEADERS log.h)
 collect (PROJECT_LIB_HEADERS mutex.h)
+collect (PROJECT_LIB_HEADERS trace.h)
 collect (PROJECT_LIB_HEADERS sleep.h)
 collect (PROJECT_LIB_HEADERS sys.h)
 

@@ -16,8 +16,10 @@ int metal_init(const struct metal_init_params *params)
 
 	memset(&_metal, 0, sizeof(_metal));
 
-	_metal.common.log_handler   = params->log_handler;
-	_metal.common.log_level     = params->log_level;
+	_metal.common.log_handler          = params->log_handler;
+	_metal.common.log_level            = params->log_level;
+	_metal.common.trace_handler        = params->trace_handler;
+	_metal.common.trace_binary_handler = params->trace_binary_handler;
 
 	metal_list_init(&_metal.common.bus_list);
 	metal_list_init(&_metal.common.generic_shmem_list);
