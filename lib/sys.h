@@ -56,11 +56,8 @@ struct metal_init_params {
 	/** default log message level (defaults to emergency). */
 	enum metal_log_level		log_level;
 
-	/** trace message handler */
+	/** trace text and binary message handler */
 	metal_trace_handler		trace_handler;
-
-	/** trace binary message handler */
-	metal_trace_binary_handler	trace_binary_handler;
 };
 
 /**
@@ -77,11 +74,8 @@ struct metal_common_state {
 	/** Current log handler (null for none). */
 	metal_log_handler		log_handler;
 
-	/** trace message handler */
+	/** trace text and binary message handler */
 	metal_trace_handler		trace_handler;
-
-	/** trace binary message handler */
-	metal_trace_binary_handler	trace_binary_handler;
 
 	/** List of registered buses. */
 	struct metal_list		bus_list;

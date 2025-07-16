@@ -22,19 +22,14 @@
 extern "C" {
 #endif
 
-static inline void metal_nuttx_trace_binary_handler(const char *name,
-						    const void *buf, size_t len)
-{
-	rpmsg_note_binary(name, buf, len);
-}
-
 static inline void metal_nuttx_trace_handler(const char *name,
+					     const void *buf, size_t len,
 					     const char *format, ...)
 {
 	va_list ap;
 
 	va_start(ap, format);
-	rpmsg_note_vprintf(name, true, format, ap);
+	rpmsg_note_vtrace(name, true, buf, len, format, ap);
 	va_end(ap);
 }
 

@@ -29,7 +29,6 @@ extern "C" {
 	.log_handler		= metal_nuttx_log_handler,		\
 	.log_level		= METAL_LOG_INFO,			\
 	.trace_handler		= metal_nuttx_trace_handler,		\
-	.trace_binary_handler	= metal_nuttx_trace_binary_handler,	\
 }
 
 /** Structure of nuttx libmetal runtime state. */
