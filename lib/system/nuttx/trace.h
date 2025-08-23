@@ -16,7 +16,8 @@
 #ifndef __METAL_NUTTX_TRACE__H__
 #define __METAL_NUTTX_TRACE__H__
 
-#include <nuttx/rpmsg/rpmsg_note.h>
+#include <metal/utilities.h>
+#include <nuttx/rpmsg/rpmsg.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -26,11 +27,18 @@ static inline void metal_nuttx_trace_handler(const char *name,
 					     const void *buf, size_t len,
 					     const char *format, ...)
 {
+#ifdef CONFIG_RPMSG_NOTE
 	va_list ap;
 
 	va_start(ap, format);
 	rpmsg_note_vtrace(name, true, buf, len, format, ap);
 	va_end(ap);
+#else
+	metal_unused(name);
+	metal_unused(buf);
+	metal_unused(len);
+	metal_unused(format);
+#endif
 }
 
 #ifdef __cplusplus
