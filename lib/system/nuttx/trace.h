@@ -27,11 +27,11 @@ static inline void metal_nuttx_trace_handler(const char *name,
 					     const void *buf, size_t len,
 					     const char *format, ...)
 {
-#ifdef CONFIG_RPMSG_NOTE
+#ifdef CONFIG_RPMSG_TRACE
 	va_list ap;
 
 	va_start(ap, format);
-	rpmsg_note_vtrace(name, true, buf, len, format, ap);
+	rpmsg_vtrace(name, true, buf, len, format, ap);
 	va_end(ap);
 #else
 	metal_unused(name);
