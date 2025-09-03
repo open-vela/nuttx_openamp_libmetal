@@ -78,7 +78,7 @@ extern "C" {
 
 /** Compute pointer to a structure given a pointer to one of its fields. */
 #define metal_container_of(ptr, structure, member)	\
-	(void *)((uintptr_t)(ptr) - metal_offset_of(structure, member))
+	(structure *)((char *)(ptr) - metal_offset_of(structure, member))
 
 #define METAL_BITS_PER_ULONG	(CHAR_BIT * sizeof(unsigned long))
 
