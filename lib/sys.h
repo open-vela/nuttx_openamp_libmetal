@@ -100,7 +100,9 @@ struct metal_state;
 #endif
 
 /** System specific runtime data. */
+#ifndef _metal
 extern struct metal_state _metal;
+#endif
 
 /**
  * @brief	Initialize libmetal.

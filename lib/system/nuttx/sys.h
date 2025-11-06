@@ -17,10 +17,14 @@
 #define __METAL_NUTTX_SYS__H__
 
 #include <metal/sleep.h>
+#include <nuttx/percpu.h>
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+DECLARE_PER_CPU_BMP(struct metal_state, _metal);
+#define _metal this_cpu_var_bmp(_metal)
 
 #define metal_yield() metal_sleep_usec(1000)
 

@@ -12,8 +12,10 @@
 #include <metal/device.h>
 #include <metal/irq.h>
 #include <metal/sys.h>
+#include <nuttx/percpu.h>
 
-struct metal_state _metal;
+#undef _metal
+DEFINE_PER_CPU_BSS_BMP(struct metal_state, _metal);
 
 int metal_sys_init(const struct metal_init_params *params)
 {
